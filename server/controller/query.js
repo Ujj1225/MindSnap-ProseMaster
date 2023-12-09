@@ -1,3 +1,18 @@
+// Function to determine prompt
+const determinePromptType = (prompt) => {
+  const questionKeywords = ["what", "why", "how", "when", "where", "who"];
+  const promptLowerCase = prompt.toLowerCase();
+
+  if (
+    prompt.length > 100 ||
+    questionKeywords.some((keyword) => promptLowerCase.includes(keyword))
+  ) {
+    return "longText";
+  } else {
+    return "question";
+  }
+};
+
 // configure dotenv
 require("dotenv").config();
 
@@ -15,6 +30,16 @@ const query = async (req, res) => {
     if (prompt == null) {
       throw new Error("No prompt was provided!");
     }
+
+    prompt_type = determinePromptType(prompt);
+
+    if (prompt_type === "question") {
+      return res.status(200).json({
+        success: true,
+        message: "Please provide us a text you want to understand!",
+      });
+    }
+
     const summarize_promt = `${prompt} \n Summarize the text in layman's terms with example`;
     const keyword_promt = `${prompt} \n From the text extract the most important keywords and provide meaning to them`;
     const mnemonics_promt = `${prompt} \n Provide mnemonics or make a story out of this text so that it can be easily remembered. Remember to keep it simple and in a way that it can easily be remembered by everyone`;
