@@ -16,7 +16,7 @@ Brilliance Unveiled: Get clear summaries, crucial keywords, and engaging mnemoni
 # Running the Project
 
 Clone the Repo:
-    git clone https://github.com/yourusername/mindsnap-prosemaster.git
+    git clone https://github.com/Ujj1225/MindSnap-ProseMaster.git
     cd mindsnap-prosemaster
 
 Install Dependencies:
@@ -25,14 +25,16 @@ Install Dependencies:
 Get OpenAI API Key:
     Visit OpenAI to get your API key.
 
-Set API Key:
-    Open config.js and replace YOUR_API_KEY with your actual OpenAI API key.
+Set API Key and PORT:
+    Open .env file and replace OPENAI_API_KEY with your actual OpenAI API key and PORT with the port you want to run on. 
 
 Run the App:
     npm start
 
 Open Your Browser:
-    Visit http://localhost:3000 and start MindSnapping!
+    Go to server using cd command and run: node app.js  
+    Go to client using cd command and run: npm run dev
+    start MindSnapping!
 
 Join the Revolution
 
