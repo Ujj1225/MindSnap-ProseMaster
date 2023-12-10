@@ -1,8 +1,8 @@
 # MindSnap-ProseMaster
 
 Welcome to MindSnap ProseMaster, your friendly study companion! 🚀
-Overview
 
+Overview
 MindSnap ProseMaster is your secret sauce for transforming lengthy texts into bite-sized brilliance. Powered by OpenAI's magical API, it crafts clear summaries, essential keywords, and fun mnemonics, making learning a breeze!
 
 >>> Client as Frontend and Server as the backend! 
