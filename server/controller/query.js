@@ -26,6 +26,7 @@ const openai = new OpenAI({
 const query = async (req, res) => {
   // getting prompt from request
   const prompt = req.body.prompt;
+  // console.log(prompt);
   try {
     if (prompt == null) {
       throw new Error("No prompt was provided!");
@@ -49,15 +50,15 @@ const query = async (req, res) => {
       await Promise.all([
         openai.create({
           model: "text-davinci-003",
-          prompt: summarize_prompt,
+          prompt: summarize_promt,
         }),
         openai.create({
           model: "text-davinci-003",
-          prompt: keyword_prompt,
+          prompt: keyword_promt,
         }),
         openai.create({
           model: "text-davinci-003",
-          prompt: mnemonics_prompt,
+          prompt: mnemonics_promt,
         }),
       ]);
 
@@ -68,7 +69,7 @@ const query = async (req, res) => {
     // return the results
     return res.status(200).json({
       success: true,
-      summarized_text: summarizeCompletion,
+      summary: summarizeCompletion,
       keywords: keywordCompletion,
       howToRemember: mnemonicsCompletion,
     });

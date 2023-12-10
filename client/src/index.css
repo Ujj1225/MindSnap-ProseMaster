@@ -1,0 +1,69 @@
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h1 {
+  color: #333;
+}
+
+textarea {
+  width: 80%;
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: none;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.container{
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 80%;
+}
+
+h2 {
+  color: #333;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+  textarea {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .summary,
+  .keywords,
+  .toLearn {
+    width: 100%;
+  }
+}

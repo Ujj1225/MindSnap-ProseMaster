@@ -17,7 +17,9 @@ const App = () => {
       const response = await axios.post("http://localhost:5000/api/v1", {
         prompt: inputText,
       });
-      const { summary, keywords, howToRemember } = response.data;
+      const { data } = response;
+      const { summary, keywords, howToRemember } = data;
+
       setSummarizedText(summary);
       setKeyword(keywords);
       setMnemonics(howToRemember);
@@ -39,15 +41,15 @@ const App = () => {
       <button onClick={handleApiReq}>Get Insights!</button>
       <div className="summary">
         <h2>Summarized Text</h2>
-        <div>{summarizedText}</div>
+        <div className="container">{summarizedText}</div>
       </div>
       <div className="keywords">
         <h2>Relevant Keywords</h2>
-        <div>{keyword}</div>
+        <div className="container">{}</div>
       </div>
       <div className="toLearn">
-        <h2>To Remember</h2>
-        <div>{mnemonics}</div>
+        <h2>Trick To Remember</h2>
+        <div className="container">{mnemonics}</div>
       </div>
     </>
   );
