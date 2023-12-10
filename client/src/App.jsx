@@ -45,7 +45,7 @@ const App = () => {
       </div>
       <div className="keywords">
         <h2>Relevant Keywords</h2>
-        <div className="container">{}</div>
+        <div className="container">{keyword}</div>
       </div>
       <div className="toLearn">
         <h2>Trick To Remember</h2>
