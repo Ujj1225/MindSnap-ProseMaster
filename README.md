@@ -71,6 +71,18 @@ git clone git@github.com:Ujj1225/MindSnap-ProseMaster.git
 ```bash
 cd MindSnap-ProseMaster
 ```
+   Navigate to server side by: 
+
+```bash
+cd server 
+```
+
+   Navigate to client side by: 
+
+```bash
+cd client
+```
+
 
 3. Install the required dependencies:
 

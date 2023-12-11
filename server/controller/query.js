@@ -22,7 +22,7 @@ const OpenAI = require("openai");
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-
+``
 const query = async (req, res) => {
   // getting prompt from request
   const prompt = req.body.prompt;
