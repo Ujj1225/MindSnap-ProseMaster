@@ -69,7 +69,7 @@ const query = async (req, res) => {
             {
               role: "assistant",
               content:
-                "From the text, extract the most important keywords and provide meaning to them",
+                "From the text, extract important words that we should remember and provide it in bullet forms in new line!",
             },
           ],
         }),

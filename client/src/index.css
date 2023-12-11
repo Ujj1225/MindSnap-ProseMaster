@@ -4,8 +4,9 @@
   background-color: #f8f8f8;
 }
 
-html, body {
-  min-height: 88%;
+html,
+body {
+  min-height: 85%;
 }
 
 .app-container {
@@ -13,7 +14,7 @@ html, body {
   margin: 0;
   padding: 0;
   display: flex;
-  min-height: 88vh;
+  min-height: 85vh;
 }
 
 h1 {
@@ -56,7 +57,7 @@ textarea {
   overflow: scroll;
 }
 
-.box{
+.box {
   margin-bottom: 1rem;
 }
 

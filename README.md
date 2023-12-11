@@ -38,6 +38,7 @@
 ## Table of Contents
 
 - [Features](#features)
+- [Demo](#demo)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Dependencies](#dependencies)
@@ -49,6 +50,9 @@
 - **Summarizer**: Condenses lengthy texts into concise, digestible summaries.
 - **Keyword Whiz**: Extracts and defines essential keywords for easy understanding.
 - **Memory Lane**: Crafts mnemonic stories for quick and enjoyable information retention.
+
+## Demo
+![Demo of Interface](image.png)
 
 ## Installation
 
