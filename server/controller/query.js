@@ -4,12 +4,14 @@ const determinePromptType = (prompt) => {
   const promptLowerCase = prompt.toLowerCase();
 
   if (
-    prompt.length > 100 ||
+    prompt.length < 100 &&
     questionKeywords.some((keyword) => promptLowerCase.includes(keyword))
   ) {
-    return "longText";
-  } else {
+    console.log("question");
     return "question";
+  } else {
+    console.log("long_text");
+    return "long_text";
   }
 };
 
@@ -22,7 +24,7 @@ const OpenAI = require("openai");
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-``
+
 const query = async (req, res) => {
   // getting prompt from request
   const prompt = req.body.prompt;
@@ -32,39 +34,61 @@ const query = async (req, res) => {
       throw new Error("No prompt was provided!");
     }
 
-    prompt_type = determinePromptType(prompt);
+    const prompt_type = determinePromptType(prompt);
 
     if (prompt_type === "question") {
+      console.log("Please enter a long text!");
       return res.status(200).json({
         success: true,
         message: "Please provide us a text you want to understand!",
       });
     }
 
-    const summarize_promt = `${prompt} \n Summarize the text in layman's terms with example`;
-    const keyword_promt = `${prompt} \n From the text extract the most important keywords and provide meaning to them`;
-    const mnemonics_promt = `${prompt} \n Provide mnemonics or make a story out of this text so that it can be easily remembered. Remember to keep it simple and in a way that it can easily be remembered by everyone`;
+    const messages = [
+      { role: "system", content: "You are a helpful assistant." },
+      { role: "user", content: prompt },
+    ];
 
     // Taking multiple requests in parallel
     const [summarizeResponse, keywordResponse, mnemonicsResponse] =
       await Promise.all([
-        openai.create({
-          model: "text-davinci-003",
-          prompt: summarize_promt,
+        openai.chat.completions.create({
+          model: "gpt-3.5-turbo",
+          messages: [
+            ...messages,
+            {
+              role: "assistant",
+              content: "Summarize the text in layman's terms with example",
+            },
+          ],
         }),
-        openai.create({
-          model: "text-davinci-003",
-          prompt: keyword_promt,
+        openai.chat.completions.create({
+          model: "gpt-3.5-turbo",
+          messages: [
+            ...messages,
+            {
+              role: "assistant",
+              content:
+                "From the text, extract the most important keywords and provide meaning to them",
+            },
+          ],
         }),
-        openai.create({
-          model: "text-davinci-003",
-          prompt: mnemonics_promt,
+        openai.chat.completions.create({
+          model: "gpt-3.5-turbo",
+          messages: [
+            ...messages,
+            {
+              role: "assistant",
+              content:
+                "Provide mnemonics or make a story out of this text so that it can be easily remembered. Remember to keep it simple and in a way that it can easily be remembered by everyone",
+            },
+          ],
         }),
       ]);
 
-    const summarizeCompletion = summarizeResponse.choices[0].text;
-    const keywordCompletion = keywordResponse.choices[0].text;
-    const mnemonicsCompletion = mnemonicsResponse.choices[0].text;
+    const summarizeCompletion = summarizeResponse.choices[0].message.content;
+    const keywordCompletion = keywordResponse.choices[0].message.content;
+    const mnemonicsCompletion = mnemonicsResponse.choices[0].message.content;
 
     // return the results
     return res.status(200).json({
@@ -74,7 +98,9 @@ const query = async (req, res) => {
       howToRemember: mnemonicsCompletion,
     });
   } catch (error) {
+    console.log("got here!");
     console.log(error.message);
   }
 };
+
 module.exports = { query };
